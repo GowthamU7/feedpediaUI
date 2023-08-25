@@ -17,7 +17,7 @@ function Watch(){
 
     useEffect(()=>{
         async function get(){
-            let res = await fetch(`http://localhost:5000/feed/${params.id}`)
+            let res = await fetch(`https://feedpedia.onrender.com/feed/${params.id}`)
             let resData = await res.json()
             setFeed({...resData})
             setTxtInput({...resData,img:''})
