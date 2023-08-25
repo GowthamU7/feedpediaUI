@@ -21,7 +21,7 @@ function Logout(){
 
     async function handleLogout(){
         if(tknData.tkn !== ''){
-            var res = await fetch('https://feedpedia.onrender.com/logout',{
+            var res = await fetch('http://localhost:5000/logout',{
                 method:'DELETE',
                 headers:{authorization:`Bearer ${tknData.tkn}`}
             })
