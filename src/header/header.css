@@ -1,0 +1,25 @@
+.header{
+    width: 100%;
+    height: 50px;
+    background-color: black;
+    padding-top: 20px;
+}
+
+.nav{
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav_left{
+    margin-left: 15px;
+}
+
+.nav_right{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.nav_right div{
+    margin-left: 10px;
+}

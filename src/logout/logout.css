@@ -1,0 +1,38 @@
+.logout{
+    width: 80%;
+}
+
+.logout div .buttons{
+    display: flex;
+}
+
+.logout div{
+    text-align: center;
+    margin-left: 10%;
+}
+
+.logout {
+    text-align: center;
+}
+
+.logout h3{
+    margin-left: 10%;
+}
+
+.logout div .buttons button{
+    margin: 1%;
+    width: 50%;
+    height: 30px;
+    border: none;
+    background-color: rgb(133, 170, 182);
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    box-shadow: 2px 1px 1px 1px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+button:active{
+    box-shadow: none;
+}
