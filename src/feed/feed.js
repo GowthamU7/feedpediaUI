@@ -8,7 +8,7 @@ function Feed(){
     const [feeds,setFeeds] =  useState([])
     useEffect(()=>{
        async function get(){
-            let res = await fetch('http://localhost:5000/feed')
+            let res = await fetch('https://feedpedia.onrender.com/feed')
             let resData = await res.json()
             setFeeds(resData)
        }

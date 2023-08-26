@@ -27,7 +27,7 @@ function Signup(){
 
     async function submitData(){
         if(errors.email === '' && errors.password === '' && errors.cnPassword === '' && errors.authorialName === ''){
-            let res = await fetch('http://localhost:5000/signup',{
+            let res = await fetch('https://feedpedia.onrender.com/signup',{
                 method:'POST',
                 body:JSON.stringify({
                     email:input.email,

@@ -17,7 +17,7 @@ function Watch(){
 
     useEffect(()=>{
         async function get(){
-            let res = await fetch(`http://localhost:5000/feed/${params.id}`)
+            let res = await fetch(`https://feedpedia.onrender.com/feed/${params.id}`)
             let resData = await res.json()
             setFeed({...resData})
             setTxtInput({...resData,img:''})
@@ -65,7 +65,7 @@ function Watch(){
 
     async function handleSubmit(){
         
-        let res = await fetch(`http://localhost:5000/feed?id=${params.id}`,{
+        let res = await fetch(`https://feedpedia.onrender.com/feed?id=${params.id}`,{
             method:'PUT',
             body:JSON.stringify({...txtInput,author:tknData.author}),
             headers:{authorization:`Bearer ${tknData.tkn}`}

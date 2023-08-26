@@ -58,7 +58,7 @@ function Postfeed(){
 
    async function handleSubmit(){
         
-        let res = await fetch('http://localhost:5000/feed',{
+        let res = await fetch('https://feedpedia.onrender.com/feed',{
             method:'POST',
             body:JSON.stringify({...txtInput,author:tknData.author}),
             headers:{authorization:`Bearer ${tknData.tkn}`}

@@ -27,7 +27,7 @@ function Login(){
             return ;
         }
         
-        var res = await fetch('http://localhost:5000/login',{
+        var res = await fetch('https://feedpedia.onrender.com/login',{
             method:'POST',
             body:JSON.stringify({...input}),
             headers:{authorization:`Bearer ${tknData.tkn}`}
