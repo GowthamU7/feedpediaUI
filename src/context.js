@@ -5,17 +5,17 @@ export const authContext = createContext()
 export function AuthContextProvider({children}){
 
     const [tknData,setTokenData] = useState(()=>{
-        let data = {tkn:'',author:''}
+        
         let token = localStorage.getItem('tkn')
-        data.tkn = token !== null ? token : ''
+        token = token === 'null' || token === '' ? '' :token
         let author = localStorage.getItem('author')
-        data.author = author !== null? author : ''
-        return data
+        author = author === 'null' || author === ''?'':author
+        return {tkn:token,author}
     })
 
     useEffect(()=>{
-        localStorage.setItem('tkn',tknData.tkn)
         localStorage.setItem('author',tknData.author)
+        localStorage.setItem('tkn',tknData.tkn)
     },[tknData])
 
     return <authContext.Provider value={{tknData,triggerSetToken:(tkn,author)=>setTokenData({tkn,author})}}>

@@ -13,22 +13,22 @@ function Logout(){
     }
 
     useEffect(()=>{
-        if(tknData.tkn === ''){
+        if(!tknData.tkn){
             setShowCf(false)
             setDisMsg('Logout Successfull.')
         }
     },[tknData])
 
     async function handleLogout(){
-        if(tknData.tkn !== ''){
-            var res = await fetch('https://feedpedia.onrender.com/logout',{
+        if(tknData.tkn){
+            var res = await fetch('http://localhost:5000/logout',{
                 method:'DELETE',
                 headers:{authorization:`Bearer ${tknData.tkn}`}
             })
             var resData = await res.json()
             if(resData.msg === "Logged out!"){
                 setShowCf(resData.msg)
-                triggerSetToken('')
+                triggerSetToken('','')
                 window.location.assign('/login')
             }else{
                 alert('something went wrong, try later.')

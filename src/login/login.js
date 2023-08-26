@@ -8,9 +8,8 @@ function Login(){
     const [input,setInput] = useState({email:'',password:''})
     const [errors,setErrors] = useState({email:'',password:''})
     const {tknData,triggerSetToken} = useContext(authContext)
-
     useEffect(()=>{
-        if( tknData.tkn !== '' ) window.location.assign('/')
+        if(tknData.tkn !== '') window.location.assign('/')
     },[tknData])
 
     function handleInputChange(e){
@@ -20,7 +19,7 @@ function Login(){
         setErrors((p)=>{ return {...p,[id]:''}})
     }
 
-    async function handleLogin(){
+    async function handleLogin(e){
 
         if( input.email === "" || input.password === "") {
             if (input.email === '') setErrors((p)=>{ return {...p,email:'Email is required'}})
@@ -28,7 +27,7 @@ function Login(){
             return ;
         }
         
-        var res = await fetch('https://feedpedia.onrender.com/login',{
+        var res = await fetch('http://localhost:5000/login',{
             method:'POST',
             body:JSON.stringify({...input}),
             headers:{authorization:`Bearer ${tknData.tkn}`}
@@ -37,18 +36,18 @@ function Login(){
         setInput({email:'',password:''})
 
         var res_data = await res.json()
-       
         if(res_data.tkn){
             triggerSetToken(res_data.tkn,res_data.authorialName)
         }
         if(res_data.msg === "Token Expired"){
-            triggerSetToken('')
+            triggerSetToken('','')
             alert(res_data.msg)
         }
         if(res_data.msg === "Email or password is incorrect."){
             alert("Email or password is incorrect.")
         }
 
+        
     }
 
     return (

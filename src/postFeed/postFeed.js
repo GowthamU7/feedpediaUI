@@ -28,12 +28,17 @@ function Postfeed(){
 
     function fileToBlob(file){
         
+
         return new Promise((res,rej)=>{
+            
+            if(Math.ceil(file.size/1000) > 30) return rej('File size exceeds 30 KB.')
+            
             let file_Reader = new FileReader()
             file_Reader.onload = (e)=>{
                 return res(e.target.result)
             }
             file_Reader.readAsDataURL(file)
+
         })
 
     }
@@ -44,6 +49,8 @@ function Postfeed(){
         fileToBlob(file).then((dt)=>{
             setTxtInput((p)=>{ return {...p,img:dt}})
             setErrors((p)=>{ return {...p,img:''}})
+        }).catch((e)=>{
+            setErrors((p)=>{ return {...p,img:'File size exceeds 30 KB.'}})
         })
 
     }
@@ -51,7 +58,7 @@ function Postfeed(){
 
    async function handleSubmit(){
         
-        let res = await fetch('https://feedpedia.onrender.com/feed',{
+        let res = await fetch('http://localhost:5000/feed',{
             method:'POST',
             body:JSON.stringify({...txtInput,author:tknData.author}),
             headers:{authorization:`Bearer ${tknData.tkn}`}

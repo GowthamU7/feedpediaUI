@@ -17,7 +17,7 @@ function Head(){
                     style={{textDecoration:"none",color:"white",fontFamily:'Courier New, Courier, monospace'}}
                     >Home</Link>
                 </div>
-                {tknData.tkn === ''? <div className='nav_right'>
+                {tknData.tkn === '' || !tknData.tkn? <div className='nav_right'>
                     <div>
                     <Link 
                     to={"/login"}
