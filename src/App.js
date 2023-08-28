@@ -7,6 +7,8 @@ import Logout from './logout/logout';
 import Feed from './feed/feed';
 import Postfeed from './postFeed/postFeed';
 import Watch from './watch/watch';
+import Myfeed from './myfeed/myfeed';
+
 
 function App() {
   return (
@@ -20,10 +22,13 @@ function App() {
           <Route path='/newpost' element={<Postfeed/>}/>
           <Route path='/logout' element={<Logout/>}/>
           <Route path='/watch/:id' element={<Watch/>}/>
+          <Route path='/myfeed' element={<Myfeed/>}/>
         </Routes>
       </BrowserRouter>
       <div className='main_App'>
-        <Outlet/>
+        <div className='bg-stone-800'>
+            <Outlet/>
+        </div>
       </div>
     </div>
   );
