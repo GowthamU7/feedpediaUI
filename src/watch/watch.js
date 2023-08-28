@@ -4,6 +4,9 @@ import { useParams } from 'react-router-dom'
 import { useContext } from 'react'
 import { authContext } from '../context'
 import { Link } from 'react-router-dom'
+import Post from '../post/post'
+
+import { ToastContainer,toast } from 'react-toastify'
 
 function Watch(){
 
@@ -82,10 +85,10 @@ function Watch(){
                 author:resData.updatedFeed.author
             })
             setEditMode(false)
-            return alert('Posted, Hurrey!')
+            return toast('Posted Hurrey!',{theme:"colored",type:"success",position:"top-right"})
         }
         if(resData.msg === 'Token Expired!'){
-            alert('Session Expired or does not Exist, login to continue..')
+            toast(resData.msg,{theme:"colored",type:"error",position:"top-right"})
             triggerSetToken('','')
         }else{
             setErrors({...resData})
@@ -96,6 +99,7 @@ function Watch(){
 
     return (
         <div className='watchFeed'> 
+        <ToastContainer/>
             {   !editMode && feed.author === tknData.author?
                 showEditButton ?
                 <div className='editButton'>
@@ -211,19 +215,13 @@ function Watch(){
             </div>
             </div>
                     :
-                    <div className='article'>
-                        <div className='watchImg'>
-                            <img src={feed.img} alt={feed.title} />
-                        </div>
-                        <div className='watchHead'>
-                            <h3>{feed.title}<br/><small>{feed.tagline}</small></h3>
-                        </div>
-                        <div className='watchBody'>
-                            <article>
-                                {feed.body}
-                            </article>
-                        </div>
-                    </div>}
+                <Post props={{
+                    title:feed.title,
+                    tagline:feed.tagline,
+                    body:feed.body,
+                    img:feed.img
+                }}/>
+                }
         </div>
     )
 }

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import './feed.css'
 
+
+
 import { Link } from "react-router-dom"
 
 function Feed(){
@@ -8,12 +10,13 @@ function Feed(){
     const [feeds,setFeeds] =  useState([])
     useEffect(()=>{
        async function get(){
-            let res = await fetch('https://feedpedia.onrender.com/feed')
+            let res = await fetch(`https://feedpedia.onrender.com/feed`)
             let resData = await res.json()
             setFeeds(resData)
        }
        get()
     },[])
+
 
     return (
         <div className="feeds">

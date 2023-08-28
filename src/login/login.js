@@ -1,6 +1,8 @@
 import './login.css'
 import { useState,useContext, useEffect } from 'react'
 import { authContext } from '../context'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Login(){
@@ -8,8 +10,13 @@ function Login(){
     const [input,setInput] = useState({email:'',password:''})
     const [errors,setErrors] = useState({email:'',password:''})
     const {tknData,triggerSetToken} = useContext(authContext)
+    
     useEffect(()=>{
-        if(tknData.tkn !== '') window.location.assign('/')
+        if(tknData.tkn !== ''){
+            setTimeout(()=>{
+                window.location.assign("/")
+            },1500)
+        }
     },[tknData])
 
     function handleInputChange(e){
@@ -37,14 +44,15 @@ function Login(){
 
         var res_data = await res.json()
         if(res_data.tkn){
+            toast('Sign In successfull.',{theme:"colored",type:"success",position:"top-right"})
             triggerSetToken(res_data.tkn,res_data.authorialName)
         }
         if(res_data.msg === "Token Expired"){
             triggerSetToken('','')
-            alert(res_data.msg)
+            toast('Token Expired!',{theme:"colored",type:"info",position:"top-right"})
         }
         if(res_data.msg === "Email or password is incorrect."){
-            alert("Email or password is incorrect.")
+            toast('Incorrect Credentials.',{theme:"colored",type:"warning",position:"top-right"})
         }
 
         
@@ -53,6 +61,8 @@ function Login(){
     return (
         <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>
             
+            <ToastContainer/>
+
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <img
                     className="mx-auto h-20 w-auto"
@@ -116,7 +126,7 @@ function Login(){
           </form>
           <p className="mt-10 text-center text-sm text-gray-500">
             Not a member?{' '}
-            <a href="https://feedpediaui.onrender.com/signup" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+            <a href="/signup" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
               signUp
             </a>
           </p>

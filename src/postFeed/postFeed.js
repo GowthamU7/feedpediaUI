@@ -3,6 +3,7 @@ import { authContext } from "../context";
 import { useState } from "react";
 
 import './postFeed.css'
+import { toast,ToastContainer } from "react-toastify";
 
 function Postfeed(){
 
@@ -71,12 +72,12 @@ function Postfeed(){
         })
 
         let resData = await res.json()
-
-        console.log(resData)
        
-        if(resData.msg === 'Posted, Hurrey!'){return alert('Posted, Hurrey!')}
+        if(resData.msg === 'Posted, Hurrey!'){
+            return toast('Posted, Hurrey!',{theme:"colored",type:"success",position:"top-right"})
+        }
         if(resData.msg === 'Token Expired!'){
-            alert('Your session has Expired, login to continue..')
+            toast('Token Expired, Please login.',{theme:"colored",type:"info",position:"top-right"})
             triggerSetToken('','')
         }else{
             setErrors({...resData})
@@ -87,6 +88,7 @@ function Postfeed(){
     return(
         <div className="w-full p-10">
             <div className="mt-10 sm:mx-auto sm:w-80 sm:max-w-auto">
+                <ToastContainer/>
           <form className="space-y-6">
             <div>
               <label htmlFor="title" className="block text-sm font-medium leading-6 text-gray-900">
