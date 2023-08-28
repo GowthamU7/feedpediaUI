@@ -38,13 +38,13 @@ import { ToastContainer,toast } from "react-toastify"
     }
 
     return (
-        <div className="w-full m-10 shadow">
+        <div className="w-50 m-10 shadow">
             <ToastContainer/>
             <ul role="list" className="divide-y divide-gray-100">
         {feeds.map((feed,i) => (
           <li key={i} className="flex justify-between gap-x-6 py-5 p-4">
             <div className="flex min-w-0 gap-x-4">
-              <img className="h-12 w-full flex-none rounded-full bg-gray-50" src={feed.img} alt="" />
+              <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={feed.img} alt="" />
               <div className="min-w-0 flex-auto">
                 <p className="text-sm font-semibold leading-6 text-gray-900">{feed.title}</p>
                 <p className="mt-1 truncate text-xs leading-5 text-gray-500">{feed.tagline}</p>
